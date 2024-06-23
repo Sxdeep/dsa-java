@@ -14,9 +14,9 @@ public class Main {
         q.push(3);
         q.push(4);
         q.push(5);
-        q.pop();
+        System.out.println(q.pop());
         q.push(6);
-        q.pop();
+        System.out.println(q.pop());
         q.print();
 
 

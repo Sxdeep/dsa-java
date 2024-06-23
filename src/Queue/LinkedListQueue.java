@@ -38,26 +38,30 @@ public class LinkedListQueue {
         }
         size++;
     }
-    public void pop() {
+    public int pop() {
         if(size == 0){
             throw new NoSuchElementException();
         }
-        else if(first == last){
+        int value;
+        if(first == last){
+            var item = first.getData();
             first = last = null;
-            return;
+            value = item;
         }
         else{
             var temp = first;
             first = first.getNext();
-            System.out.println(temp);
             temp.setNext(null);
+            value = temp.getData();
         }
         size--;
+        return value;
     }
     public boolean isEmpty() {
         return size == 0;
     }
     public int peek() {
-      return first.getData();
+        if(size == 0) throw new IllegalArgumentException();
+        return first.getData();
     }
 }
