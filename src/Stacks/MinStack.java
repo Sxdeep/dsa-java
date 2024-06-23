@@ -2,17 +2,22 @@ package Stacks;
 
 import java.util.EmptyStackException;
 
-public class Stack {
+public class MinStack {
+    private Stack min;
     private int[] items;
     private int count;
 
-    public Stack() {
+    public MinStack() {
+        min = new Stack();
         items = new int[10];
         count = 0;
     }
     public void push(int val) {
         if(count != items.length) {
             items[count] = val;
+            if(count == 0 || min.peek() >= val) {
+                min.push(val);
+            }
             count++;
         }
         else{
@@ -24,6 +29,9 @@ public class Stack {
             throw new EmptyStackException();
         }
         else{
+            if(min.peek() == items[count - 1]) {
+                min.pop();
+            }
             return items[--count];
         }
     }
@@ -44,5 +52,8 @@ public class Stack {
             System.out.print(items[i] + " ");
         }
         System.out.println();
+    }
+    public int min() {
+        return min.peek();
     }
 }

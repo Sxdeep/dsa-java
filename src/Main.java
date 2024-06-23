@@ -1,15 +1,22 @@
-import Stacks.BalancedExpressions;
-import Stacks.Stack;
+import Queue.PriorityQueue;
+import Queue.QueueReverser;
+import Queue.StackQueue;
+import Queue.ArrayQueue;
+import Stacks.QueueStack;
+
+import java.util.ArrayDeque;
 
 public class Main {
     public static void main(String[] args) {
-        Stack stack = new Stack();
-        stack.push(10);
-        stack.push(20);
-        stack.push(30);
-        stack.pop();
-        System.out.println(stack.peek());
-        System.out.println(stack.isEmpty());
-        stack.print();
+        var q = new QueueStack();
+        q.push(1);
+        q.push(2);
+        q.push(3);
+        q.push(4);
+        q.push(5);
+        System.out.println(q.pop());
+        System.out.println(q);
+
+
     }
 }
