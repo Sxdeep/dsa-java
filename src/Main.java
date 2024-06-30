@@ -1,24 +1,16 @@
-import Queue.PriorityQueue;
-import Queue.QueueReverser;
-import Queue.StackQueue;
-import Queue.ArrayQueue;
-import Stacks.QueueStack;
-import Queue.LinkedListQueue;
-import java.util.ArrayDeque;
+import Tree.Tree;
+
 
 public class Main {
     public static void main(String[] args) {
-        var q = new LinkedListQueue();
-        q.push(1);
-        q.push(2);
-        q.push(3);
-        q.push(4);
-        q.push(5);
-        System.out.println(q.pop());
-        q.push(6);
-        System.out.println(q.pop());
-        q.print();
+        System.out.println(factorial(5));
+    }
 
-
+    public static int factorial(int value) {
+        int factorial = 1;
+        for(int i = 1; i <= value; i++) {
+            factorial = factorial * i;
+        }
+        return factorial;
     }
 }
