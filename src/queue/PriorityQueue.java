@@ -13,7 +13,7 @@ public class PriorityQueue {
     public void enQueue(int val) {
         if(size == items.length) throw new IllegalArgumentException();
         int i;
-        for(i = size- 1; i >= 0; i--) {
+        for(i = size - 1; i >= 0; i--) {
             if(val < items[i]) {
                 items[i + 1] = items[i];
             }
