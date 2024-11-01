@@ -21,12 +21,10 @@ public class MaxHeap {
 
     public void insert(int value) {
         if(isFull()) throw new IllegalStateException();
-
         heap[count] = value;
         bubbleUp(count);
         count++;
     }
-
     private void bubbleUp(int index) {
         if(index == 0) return;
         if(heap[index] > heap[parent(index)]) {
@@ -37,10 +35,20 @@ public class MaxHeap {
             bubbleUp(index);
         }
     }
-
+    public void insert2(int value) {
+        if(isFull()) throw new IllegalStateException();
+        heap[count] = value;
+        count++;
+        var index = count - 1;
+        while (index > 0 && heap[index] > heap[parent(index)]) {
+            var temp = heap[parent(index)];
+            heap[parent(index)] = heap[index];
+            heap[index] = temp;
+            index = parent(index);
+        }
+    }
     public void remove() {
         if(isEmpty()) throw new IllegalStateException();
-
         heap[0] = heap[count - 1];
         count--;
         bubbleDown(0);
@@ -65,6 +73,26 @@ public class MaxHeap {
         }
     }
 
+    public int remove2() {
+        if(isEmpty()) throw new IllegalStateException();
+        var root = heap[0];
+        heap[0] = heap[count - 1];
+        count--;
+        var index = 0;
+        while(index <= count && heap[index] < heap[getLargerChildIndex(index)]) {
+            var child = getLargerChildIndex(index);
+            swap(index, getLargerChildIndex(index));
+            index = child;
+        }
+        return root;
+    }
+
+    private void swap(int index1, int index2) {
+        var temp = heap[index2];
+        heap[index2] = heap[index1];
+        heap[index1] = temp;
+    }
+
     private int parent(int index) {
         return (index - 1) / 2;
     }
@@ -82,21 +110,21 @@ public class MaxHeap {
             System.out.println(heap[i]);
         }
     }
-    
+
     private int getLargerChildIndex(int index) {
-        if(hasLeftChild(index)) {
+        if(!hasLeftChild(index)) {
             return index;
         }
-        if(hasRightChild(index)) {
+        if(!hasRightChild(index)) {
             return leftIndex(index);
         }
         return heap[rightIndex(index)] > heap[rightIndex(index)] ? rightIndex(index) : leftIndex(index);
     }
-    
+
     private boolean hasLeftChild(int index) {
         return leftIndex(index) < count;
     }
-    
+
     private boolean hasRightChild(int index) {
         return rightIndex(index) < count;
     }

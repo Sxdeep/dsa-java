@@ -1,3 +1,5 @@
+package array;
+
 public class Array {
     private int[] items;
     private int count;
